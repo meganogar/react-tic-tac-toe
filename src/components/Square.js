@@ -8,7 +8,16 @@ const Square = (props) => {
   //  Component to alert a parent 
   //  component when it's clicked on.
 
-  return <button onClick={props.onClickCallback}
+  const pleaseUpdateSquare = () => {
+    console.log('Im in pleaseUpdateSquare')
+    const updateSquare = {
+      id: props.id,
+      value: "YY"
+    }
+    props.onClickCallback(updateSquare);
+  }
+
+  return <button onClick={pleaseUpdateSquare}
     className="square"
   > 
     {props.value}

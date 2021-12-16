@@ -40,19 +40,45 @@ const App = () => {
   // You will need to create a method to change the square
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
-  
-  const [playerTurn, setPlayerTurn] = useState(false);
 
-  const onClickCallback = () => {
+  const [playerTurn, setPlayerTurn] = useState(false);
+  
+
+  const onClickCallback = (updateSquare) => {
     console.log(playerTurn);
     setPlayerTurn(!playerTurn);
-    let xOrO = 'X'
-    if (playerTurn) {
-      xOrO = 'X';
-    } else {
-      xOrO = 'O';
+    const newSquareList = [];
+    
+    for (let row of squares) {
+      for (let element of row) {
+        newSquareList.push(element);
+
+
+
+    const squareInfo = newSquareList.map(square => {
+        if (square.id === updateSquare.id) {
+          return updateSquare;
+        } else {
+          return square;
+        }
+    });
+
+    let reshapedInfo = []
+    let rowSquares = []
+    // for (let i, i < squareInfo.length, i++)
+    for (let square in squareInfo) {
+      if ((square+1)%3 ==0) {
+        reshapedInfo.push(rowSquares)
+      }
+      else {
+        rowSquares.push(squareInfo[square])
+      }
     }
-    return xOrO;
+
+
+    setSquares(squareInfo);
+
+    
   };
 
   const checkForWinner = () => {
